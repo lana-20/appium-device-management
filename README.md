@@ -134,15 +134,11 @@ We can also set the clipboard content ourselves, using <code>driver.set_clipboar
 |----|----|
 |driver.execute_script("mobile: deviceInfo")|Returns a Python dictionary with a lot of information about the device.|
 
-OK, we come now to the last stop on our tour of the huge variety of Appium device management features. This one is only for Android, and it allows us to get a lot of interesting information about the device under test. It is another execute script "mobile" method, called <code>deviceInfo</code>. It doesn't take any parameters, and will return a multi-level Python dictionary with lots of information about the device. I think the best way to illustrate what this does is to look at it in a concrete example. I'll create a new file called <code>device_info_android.py</code>. In the <code>try</code> block, I'll place a single line that just prints out the device info:
+OK, we come now to the last stop on our tour of the huge variety of Appium device management features. This one is only for Android, and it allows us to get a lot of interesting information about the device under test. It is another execute script "mobile" method, called <code>deviceInfo</code>. It doesn't take any parameters, and will return a multi-level Python dictionary with lots of information about the device. I think the best way to illustrate what this does is to look at it in a concrete example. I'll create a new file called [<code>device_info_android.py</code>](https://github.com/lana-20/appium-device-management/blob/main/device_info_android.py). In the <code>try</code> block, I'll place a single line that just prints out the device info:
 
     print(driver.execute_script("mobile: deviceInfo"))
 
-And that's it! All we want to do is see what kind of dictionary of data this returns to us. And I'm also going to delete a bunch of the unnecessary imports up at the top of this file, since we don't need them any more. Alright. Let's give this a shot and run it. I'll switch over to my terminal and ensure that I have my emulator running as well as the Appium server. Now, in the mobile directory of our project, I can run this script:
-
-    python device_info_android.py
-
-OK, it's running. Now let's wait for the output. Here it is:
+And that's it! All we want to do is see what kind of dictionary of data this returns to us. Here is the output:
 
     {'androidId': 'b1a26baa1a9be88b', 'apiVersion': '29', 'bluetooth': None, 'brand': 'google', 'carrierName': 'Android', 'displayDensity': 420, 'locale': 'en_US', 'manufacturer': 'Google', 'model': 'Android SDK built for x86', 'networks': [{'capabilities': {'SSID': None, 'linkDownBandwidthKbps': 102400, 'linkUpstreamBandwidthKbps': 51200, 'networkCapabilities': 'NET_CAPABILITY_MMS,NET_CAPABILITY_SUPL,NET_CAPABILITY_DUN,NET_CAPABILITY_FOTA,NET_CAPABILITY_IMS,NET_CAPABILITY_CBS,NET_CAPABILITY_INTERNET,NET_CAPABILITY_NOT_RESTRICTED,NET_CAPABILITY_TRUSTED,NET_CAPABILITY_NOT_VPN,NET_CAPABILITY_VALIDATED,NET_CAPABILITY_NOT_ROAMING,NET_CAPABILITY_FOREGROUND,NET_CAPABILITY_NOT_CONGESTED,NET_CAPABILITY_NOT_SUSPENDED', 'signalStrength': -2147483648, 'transportTypes': 'TRANSPORT_CELLULAR'}, 'detailedState': 'CONNECTED', 'extraInfo': 'epc.tmobile.com', 'isAvailable': True, 'isConnected': True, 'isFailover': False, 'isRoaming': False, 'state': 'CONNECTED', 'subtype': 13, 'subtypeName': 'LTE', 'type': 0, 'typeName': 'MOBILE'}], 'platformVersion': '10', 'realDisplaySize': '1080x1920', 'timeZone': 'America/Vancouver'}
 
