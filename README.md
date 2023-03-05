@@ -1,4 +1,4 @@
-# appium-device-management
+# Appium Device Management
 
 Some Appium features have to do with the device itself, rather than any particular app. You may or may not find that you need these features in the course of your testing, as they go beyond simple UI automation. But whatever the case, it's important to know what you can do with Appium.
 
@@ -80,9 +80,25 @@ We also have a special command for Android devices only, called <code>driver.pre
 
 ![image](https://user-images.githubusercontent.com/70295997/222956640-a6266839-c85c-4e7d-abd5-3439594a7f40.png)
 
+Well, Android has a special numeric code that it has assigned to every possible key that can be triggered on the device, including hardware keys. So whether we're talking about the software key for the letter 'A', or the hardware key that turns the device volume up, there's a keycode for that! On the screen now is a snippet from the Android developer documentation that discusses Keycodes. There you can find out that there is a special constant named <code>KEYCODE_BACK</code>, which represents the "back" button on a device. This may be a hardware button on some devices or a software button on others. But regardless, the constant value for this key is the number 4. This number 4 is what you would use as the <code>code</code> argument to the <code>press_keycode()</code> command. In most cases, this is all you need.
 
+You might also want to include something called a Meta State. An example of a meta state would be that the alt key is held down while you press a different key, in order to produce a special symbol. Meta states also are represented by constant numeric values. So the meta state that corresponds to the alt key being held down, for example, is the number 2.
 
+Finally, you might also need to include something called a Flag. Flags are bits of information set by the system when executing key events, that are then passed to applications so applications can determine what exactly happened during an event. Using Appium, you can specify which flags the application receives from the system, mimicking any kind of keypress. This is a very advanced feature, and you probably won't need to worry about flags. But if you want to use them, each flag is also a special type of integer which can be combined with other flags to form a single number using the pipe operator, which is a way of merging two numbers according to certain binary rules. So if we wanted to say that our key event had two flags, namely the "long press" flag and the "from system" flag, we could look at the numbers representing each. The long press flag is 128, and the from system flag is 8. Then, we could construct a call to <code>driver.press_keycode()</code> where the flag parameter is <code>8 | 128</code>. We haven't seen this pipe operator before, and it's not used very frequently. In the case of android key flags, this is basically the same as <code>8 + 128</code>, in other words, <code>136</code>. All we need to know here is that the number 136 is actually an unambiguous way of declaring that there are 2 flags that the keycode's event should contain.
 
+So, why do we want to use the press keycode command anyway? The most common use will just be to trigger hardware keys, or maybe to simulate an external keyboard used while playing a game.
+
+OK, moving right along through our parade of device functions! Next up: biometrics! This section is for iOS in particular, since many iOS apps have features that are protected by biometric security. What is biometric security? Essentially, it is security which is keyed to certain aspects of the physical biology of the user. In the case of iOS, this is either a fingerprint or the scan of someone's face. The fingerprint security feature for iOS is called "Touch ID", and the face scan security feature is called "Face ID". Apps can hook into Touch ID and Face ID if the user has them turned on, to protect certain areas of the app, like a login.
+
+Obviously, it would be good to test this functionality if your app supports it, and Appium provides a way to work with biometric security for iOS simulators. This does not work on real devices, for the obvious reason that if Appium could get around biometric security on a real device, it would pose a security hazard to the users of the device.
+
+## Biometric Security
+
+What functions do we have available to support automation of biometric security?
+
+The first method we have is a <code>mobile:</code> execute script method, called <code>isBiometricEnrolled</code>. This mobile method takes no parameters and will simply return a true or false boolean value to let you know whether the device is enrolled in a biometric scheme. This is important to know, because before you attempt to automate a biometric match using touch ID or face ID, the device must be enrolled. So, how do you enroll it if it's not enrolled?
+
+By using another mobile method, called <code>enrollBiometric</code>. This method does take a parameter dictionary, with a single key called <code>isEnabled</code>. This key should have a value of either true or false, denoting whether we want to enroll or unenroll the device in the biometric program. Which program will the device be enrolled in? Well, every iOS device either supports Touch ID or Face ID, but not both, so you'll have to know what kind of device you're automating in order to know whether you just enrolled in Touch ID or Face ID!
 
 
 
