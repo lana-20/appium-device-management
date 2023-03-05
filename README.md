@@ -4,12 +4,6 @@ Some Appium features have to do with the device itself, rather than any particul
 
 The first set of features has to do with managing files. What kind of files exactly? Here I'm talking about files that live on the device itself.
 
-| File Management Use Cases |
-| --------  |
-| Mobile devices are tiny computers and have their own filesystems. Depending on the device, users don't have direct access to these filesystems. |
-| It can be useful to automation to read or write files from the device filesystem. E.g., populate the device camera roll before a test. |
-| Verify files written by your device are written correctly. |
-
 [Device File Interaction](https://github.com/lana-20/appium-device-file-interaction)
 
 [Android File System](https://github.com/lana-20/adb-shell#file-system)
