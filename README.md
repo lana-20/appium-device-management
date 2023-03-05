@@ -130,6 +130,10 @@ We can also set the clipboard content ourselves, using <code>driver.set_clipboar
 
 ## Device Info
 
+| Command | Explanation |
+|----|----|
+|driver.execute_script("mobile: deviceInfo")|Returns a Python dictionary with a lot of information about the device.|
+
 OK, we come now to the last stop on our tour of the huge variety of Appium device management features. This one is only for Android, and it allows us to get a lot of interesting information about the device under test. It is another execute script "mobile" method, called <code>deviceInfo</code>. It doesn't take any parameters, and will return a multi-level Python dictionary with lots of information about the device. I think the best way to illustrate what this does is to look at it in a concrete example. I'll create a new file called <code>device_info_android.py</code>. In the <code>try</code> block, I'll place a single line that just prints out the device info:
 
     print(driver.execute_script("mobile: deviceInfo"))
