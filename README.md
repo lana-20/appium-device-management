@@ -4,9 +4,17 @@ Some Appium features have to do with the device itself, rather than any particul
 
 The first set of features has to do with managing files. What kind of files exactly? Here I'm talking about files that live on the device itself.
 
-[Device File Interaction](https://github.com/lana-20/appium-device-file-interaction)
+## [Device File Interaction](https://github.com/lana-20/appium-device-file-interaction)
 
 [Android File System](https://github.com/lana-20/adb-shell#file-system)
+
+## Locking and Unlocking
+
+| Coomand | Explanation |
+|----|----|
+| driver.lock(), driver.lock(5), driver.lock(-1) | Lock the screen and come back after a certain number of seconds |
+| driver.unlock() | Unlock the screen |
+| unlockType / unlockKey | Caps for use with unlock(). If used, attempts to unlock via Ul instead of helper app. Types: "password'", "pin'", "pattern", "fingerprint" |
 
 Another aspect of mobile devices that differs from web browsers is that we can lock and unlock them. In fact, it's often important to be sure that, after we unlock a device, our app behaves the same as it did before locking it. The mobile operating systems often put apps to sleep, and so they need to be designed in such a way that when they wake back up, they don't crash or do unexpected things.
 
@@ -14,7 +22,7 @@ The way to use Appium to lock a device is to call, simply enough, <code>driver.l
 
 And that is <code>driver.unlock()</code>, which as you can guess will attempt to unlock the device. There are a few limitations to this command. It works just as expected on emulators and simulators, but real devices are more complex. Real devices can be secured with various types of protection, and obviously Appium is not able to get around device lock screens in any way that a user themselves wouldn't be able to do. So if you are automating a real device, and it has some kind of security set on the lock screen, on iOS you're completely out of luck. On Android, however, it's possible to actually automate the lock screen, as long as we already know the password or pin.
 
-To use Appium to unlock an Android device screen that's protected with a password, pin, or pattern, the first thing we need to do is ensure we use two new capabilities when we start our session. The first is <code>unlockType</code>, and it tells Appium which unlock strategy to expect it should use. This should be a string, and should be the word <code>password</code>, <code>pin</code>, <code>pattern</code> or <code>fingerprint</code>. The second capability is called <code>unlockKey</code>, and it is the particular value that Appium should use to unlock the device. In other words, if the unlock type is <code>password</code>, then the value of the <code>unlockKey</code> capability should be the actual password itself. In the case of the fingerprint, it would be the id number of one of the stored fingerprints. Obviously, this would work in the context of fake fingerprints you can use on emulators, not real fingerprints. And so on. When a session has these capabilities set, and you call <code>driver.unlock()</code>, Appium will use the strategy you've defined to try to unlock an Android screen (by aumating it - by actually typing in the password or actually swiping around in the form of the pattern you specify. These capabilities have no effect on iOS.
+To use Appium to unlock an Android device screen that's protected with a password, pin, or pattern, the first thing we need to do is ensure we use two new capabilities when we start our session. The first is <code>unlockType</code>, and it tells Appium which unlock strategy to expect it should use. This should be a string, and should be the word <code>password</code>, <code>pin</code>, <code>pattern</code> or <code>fingerprint</code>. The second capability is called <code>unlockKey</code>, and it is the particular value that Appium should use to unlock the device. In other words, if the unlock type is <code>password</code>, then the value of the <code>unlockKey</code> capability should be the actual password itself. In the case of the fingerprint, it would be the id number of one of the stored fingerprints. Obviously, this would work in the context of fake fingerprints you can use on emulators, not real fingerprints. And so on. When a session has these capabilities set, and you call <code>driver.unlock()</code>, Appium will use the strategy you've defined to try to unlock an Android screen (by aumating it - by actually typing in the password or actually swiping around in the form of the pattern you specify). These unlock capabilities have no effect on iOS, we can't automate lock screen in iOS at all.
 
 The last bit of functionality regarding locking is the command <code>driver.is_locked()</code>, which will return True if the device is locked and False otherwise, so you can use Appium to check the screen lock state.
 
