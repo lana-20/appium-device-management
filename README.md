@@ -30,11 +30,13 @@ While it's not possible to change the location of a real device, it is possible 
 
 To determine the location of a device using Appium, simply use the <code>driver.location</code> property. Accessing this property will get you back a dictionary with keys <code>latitude</code>, <code>longitude</code>, and <code>altitude</code>. Altitude is not actually supported, but the key is there because it's part of the specification. On emulators and simulators, the values will of course not necessarily correspond to the actual physical location of your computer, but on a real device it will return the physical location.
 
-Let's talk about setting the location of the device for the purposes of testing. While it's not possible to change the location of a real device, it is possible to set the location of an emulator and simulator, using the driver.set_location command. It's a function that takes three parameters: the first is a number representing the latitude, the second is longitude, and the third is altitude. Again, I recommend just setting the altitude to 0 since neither the Android nor iOS platforms actually do anything with that particular bit of information.
+Let's talk about setting the location of the device for the purposes of testing. While it's not possible to change the location of a real device, it is possible to set the location of an emulator and simulator, using the <code>driver.set_location</code> command. It's a function that takes three parameters: the first is a number representing the <code>latitude</code>, the second is <code>longitude</code>, and the third is <code>altitude</code>. Again, I recommend just setting the <code>altitude</code> to 0 since neither the Android nor iOS platforms actually do anything with that particular bit of information.
 
 Now, let's talk about some of the fun we can have with keyboards. This section is really only for Android, which allows us to do some interesting things with keyboards.
 
 First of all, one common problem that you might run into when automating an Android emulator is that the keyboard provided by default doesn't necessarily have the ability to produce arbitrary unicode symbols. If you find that you need to type text in a language that requires these symbols, you should set the <code>unicodeKeyboard</code> capability to true, and Appium will install a specially-designed Android keyboard for the emulator ahead of testing, so that your text input will work as planned.
+
+We also have a special command for Android devices only, called <code>driver.press_keycode()</code>. This takes three parameters. The first is called <code>code</code>, the second is called <code>metastate</code>, and the third is called <code>flags</code>. What is all this business about keycodes?
 
 
 
