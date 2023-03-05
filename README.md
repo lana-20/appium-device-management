@@ -146,6 +146,6 @@ Wow, that's a lot of stuff! We can see we have information about the android ID 
 
 And since this is just a Python dictionary, you can walk through it just like you would any other Python dictionary in your code!
 
-Alright, that's it for device management. There are actually quite a few more features than we've explored in this unit, so as always, head to appiumpro.com or the Appium documentation to hunt around for more that might be useful for your particular use case.
+Alright, that's it for device management. There are actually quite a few more features than we've explored, so as always, head to the Appium documentation to hunt around for more that might be useful for your particular use case.
 
 
