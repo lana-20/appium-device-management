@@ -50,14 +50,6 @@ To set the orientation, just set the same property to one of those two string va
 | location = driver.location | Get the current geo location. Returns a dict with keys latitude, longitude, and altitude. (Altitude not supported on iOS or Android) |
 |driver.set_location(lat, long, alt)|Set the current geo location with latitude and longitude (altitude not supported for now, use value of 0)|
 
-
-
-
-
-
-
-
-
 Another very important aspect of mobile devices is their ability to detect their location on the surface of the earth using GPS. Most mobile devices have GPS receivers that can be used to share the device's latitude and longitude with apps, to support location-based features. During our automation, it is obviously a requirement for these kinds of apps to be able to set the location of the device for the purpose of testing.
 
 While it's not possible to change the location of a real device, it is possible to set the location of an emulator and simulator.
@@ -80,7 +72,7 @@ We also have a special command for Android devices only, called <code>driver.pre
 
 ![image](https://user-images.githubusercontent.com/70295997/222956640-a6266839-c85c-4e7d-abd5-3439594a7f40.png)
 
-Well, Android has a special numeric code that it has assigned to every possible key that can be triggered on the device, including hardware keys. So whether we're talking about the software key for the letter 'A', or the hardware key that turns the device volume up, there's a keycode for that! On the screen now is a snippet from the Android developer documentation that discusses Keycodes. There you can find out that there is a special constant named <code>KEYCODE_BACK</code>, which represents the "back" button on a device. This may be a hardware button on some devices or a software button on others. But regardless, the constant value for this key is the number 4. This number 4 is what you would use as the <code>code</code> argument to the <code>press_keycode()</code> command. In most cases, this is all you need.
+Well, Android has a special numeric code that it has assigned to every possible key that can be triggered on the device, including hardware keys. So whether we're talking about the software key for the letter 'A', or the hardware key that turns the device volume up, there's a keycode for that! Above captioned is a snippet from the Android developer documentation that discusses Keycodes. There you can find out that there is a special constant named <code>KEYCODE_BACK</code>, which represents the "back" button on a device. This may be a hardware button on some devices or a software button on others. But regardless, the constant value for this key is the number 4. This number 4 is what you would use as the <code>code</code> argument to the <code>press_keycode()</code> command. In most cases, this is all you need.
 
 You might also want to include something called a Meta State. An example of a meta state would be that the alt key is held down while you press a different key, in order to produce a special symbol. Meta states also are represented by constant numeric values. So the meta state that corresponds to the alt key being held down, for example, is the number 2.
 
