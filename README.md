@@ -14,7 +14,7 @@ The first set of features has to do with managing files. What kind of files exac
 |----|----|
 | driver.lock(), driver.lock(5), driver.lock(-1) | Lock the screen and come back after a certain number of seconds |
 | driver.unlock() | Unlock the screen |
-| unlockType / unlockKey | Caps for use with unlock(). If used, attempts to unlock via Ul instead of helper app. Types: "password'", "pin'", "pattern", "fingerprint" |
+| unlockType / unlockKey | Caps for use with <code>unlock()</code>. If used, attempts to unlock via Ul instead of helper app. Types: "password'", "pin'", "pattern", "fingerprint" |
 
 Another aspect of mobile devices that differs from web browsers is that we can lock and unlock them. In fact, it's often important to be sure that, after we unlock a device, our app behaves the same as it did before locking it. The mobile operating systems often put apps to sleep, and so they need to be designed in such a way that when they wake back up, they don't crash or do unexpected things.
 
