@@ -88,11 +88,11 @@ Finally, you might also need to include something called a Flag. Flags are bits 
 
 So, why do we want to use the press keycode command anyway? The most common use will just be to trigger hardware keys, or maybe to simulate an external keyboard used while playing a game.
 
+## Biometrics
+
 OK, moving right along through our parade of device functions! Next up: biometrics! This section is for iOS in particular, since many iOS apps have features that are protected by biometric security. What is biometric security? Essentially, it is security which is keyed to certain aspects of the physical biology of the user. In the case of iOS, this is either a fingerprint or the scan of someone's face. The fingerprint security feature for iOS is called "Touch ID", and the face scan security feature is called "Face ID". Apps can hook into Touch ID and Face ID if the user has them turned on, to protect certain areas of the app, like a login.
 
 Obviously, it would be good to test this functionality if your app supports it, and Appium provides a way to work with biometric security for iOS simulators. This does not work on real devices, for the obvious reason that if Appium could get around biometric security on a real device, it would pose a security hazard to the users of the device.
-
-## Biometric Security
 
 What functions do we have available to support automation of biometric security?
 
