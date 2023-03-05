@@ -115,9 +115,14 @@ By using another mobile method, called <code>enrollBiometric</code>. This method
 
 The next piece of the puzzle is to figure out how to actually trigger a biometric match. To do this we use the <code>sendBiometricMatch</code> mobile method. It takes two parameters, which combine into a single Python dictionary, with a key called <code>type</code> and a key called <code>match</code>. <code>type</code> refers to the type of biometric match we want, whether Touch ID or Face ID, and its value should be exactly equal to the string <code>touchId</code> or <code>faceId</code>. The <code>match</code> key should have a boolean value, where True denotes a positive match and False denotes a negative match. What do I mean by positive and negative matches? Well, a positive match is going to simulate a successful authentication of the biometric security. This is what you use when you want to see if your app correctly handles when a user passes the biometric test. And a negative match is used to simulate a failed/unsuccessful authentication. It's what you use when you want to test how your app handles the situation where a user doesn't pass the biometric test. You might want to test that the user is not logged in successfully in that case, for example.
 
-## Clipboard
+## Device Clipboard
 
 OK. Given that our devices are basically tiny but powerful computers, they also have an internal memory system known as the clipboard. This is the same system that lets you copy and paste content on your desktop computer. And indeed, many apps take advantage of the copying and pasting features built into iOS and Android in order to function properly. You can actually use Appium to send data straight to the device's clipboard, to populate it with content that you can then read from your app in order to test your app's behavior. So let's take a look at the commands we have available.
+
+| Command | Explanation |
+|----|----|
+|text = driver.get_clipboard()|Return whatever text is in the device's clipboard at the moment. Can use <code>content_type</code> keyword arg and the <code>ClipboardContentType</code> class to find values for it.|
+|driver.set_clipboard('Text to set')|Set data in the device's clipb0ard. Also takes <code>content_type</code> keyword in case of an image or other so that Appium can set it as the appropriate type on the device|
 
 First, we have <code>driver.get_clipboard()</code>. This method will retrieve whatever data is in the device clipboard at the moment, and takes a single optional keyword argument called <code>content_type</code>, which by default is set to plain text. If you know that the content you are copying is a different kind, such as a URL or an image on iOS, then you can use the <code>ClipboardContentType</code> class to find constants you can use as the value for <code>content_type</code>. This will make sure to interpret the content correctly for you. On Android, only the text content type is supported.
 
