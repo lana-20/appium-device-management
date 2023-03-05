@@ -10,7 +10,7 @@ The first set of features has to do with managing files. What kind of files exac
 
 ## Locking and Unlocking
 
-| Coomand | Explanation |
+| Command | Explanation |
 |----|----|
 | driver.lock(), driver.lock(5), driver.lock(-1) | Lock the screen and come back after a certain number of seconds |
 | driver.unlock() | Unlock the screen |
@@ -27,11 +27,36 @@ To use Appium to unlock an Android device screen that's protected with a passwor
 
 The last bit of functionality regarding locking is the command <code>driver.is_locked()</code>, which will return True if the device is locked and False otherwise, so you can use Appium to check the screen lock state.
 
+## Device Orientation
+
+| Command | Explanation |
+|----|----|
+| driver.orientation | Get the current orientation ("LANDSCAPE", or "PORTRAIT") |
+
 One unique feature of mobile devices versus desktop computers is that mobile devices can be used in a variety of screen orientations. You can hold them in portrait mode, or turn them sideways to landscape mode in order to watch videos or play games, for example. Using Appium, we can both detect the orientation as well as set the orientation (though of course we can't change the physical orientation of a real device...just the screen orientation).
 
 To detect the current orientation, simply retrieve the <code>orientation</code> property on the driver object, by writing driver.orientation. This is a property, not a command. It will return a string matching either LANDSCAPE (in all caps) or PORTRAIT (in all caps).
 
 To set the orientation, just set the same property to one of those two string values, LANDSCAPE or PORTRAIT (in all caps again).
+
+## Geolocation
+
+- Most mobile devices come with GPS receivers
+- Location-based mobile apps require that their automation be able to detect and emulate actual physical positions of the device in various points on the globe
+- Geolocation setting works with emulators/simulators, but not real devices in general
+
+| Command | Explanation |
+|----|----|
+| location = driver.location | Get the current geo location. Returns a dict with keys latitude, longitude, and altitude. (Altitude not supported on iOS or Android) |
+|driver.set_location(lat, long, alt)|Set the current geo location with latitude and longitude (altitude not supported for now, use value of 0)|
+
+
+
+
+
+
+
+
 
 Another very important aspect of mobile devices is their ability to detect their location on the surface of the earth using GPS. Most mobile devices have GPS receivers that can be used to share the device's latitude and longitude with apps, to support location-based features. During our automation, it is obviously a requirement for these kinds of apps to be able to set the location of the device for the purpose of testing.
 
