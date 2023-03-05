@@ -66,11 +66,22 @@ To determine the location of a device using Appium, simply use the <code>driver.
 
 Let's talk about setting the location of the device for the purposes of testing. While it's not possible to change the location of a real device, it is possible to set the location of an emulator and simulator, using the <code>driver.set_location</code> command. It's a function that takes three parameters: the first is a number representing the <code>latitude</code>, the second is <code>longitude</code>, and the third is <code>altitude</code>. Again, I recommend just setting the <code>altitude</code> to 0 since neither the Android nor iOS platforms actually do anything with that particular bit of information.
 
+## Keyboards
+| Command | Explanation |
+|----|----|
+|unicodeKeyboard|Android-only! Set this capability to True to use a keyboard supporting unicode input. Replaces existing keyboard. Can also use resetKeyboard cap (set to True) to have Appium reset to the original keyboard on session quit.|
+|driver.press_keycode(code, metastate, flags)|Android-only! Use int constants from Android source to trigger low-level key event injection. Access any keys including hardware.|
+
 Now, let's talk about some of the fun we can have with keyboards. This section is really only for Android, which allows us to do some interesting things with keyboards.
 
 First of all, one common problem that you might run into when automating an Android emulator is that the keyboard provided by default doesn't necessarily have the ability to produce arbitrary unicode symbols. If you find that you need to type text in a language that requires these symbols, you should set the <code>unicodeKeyboard</code> capability to true, and Appium will install a specially-designed Android keyboard for the emulator ahead of testing, so that your text input will work as planned.
 
 We also have a special command for Android devices only, called <code>driver.press_keycode()</code>. This takes three parameters. The first is called <code>code</code>, the second is called <code>metastate</code>, and the third is called <code>flags</code>. What is all this business about keycodes?
+
+![image](https://user-images.githubusercontent.com/70295997/222956640-a6266839-c85c-4e7d-abd5-3439594a7f40.png)
+
+
+
 
 
 
