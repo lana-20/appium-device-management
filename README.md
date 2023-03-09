@@ -1,5 +1,7 @@
 # Appium Device Management
 
+*With Appium's iOS and Android drivers, you're not strictly limited to the UI of your application in all cases. You can also work with various features and functions of the device directly, for example files, keyboards, and the device clipboard.*
+
 Some Appium features have to do with the device itself, rather than any particular app. You may or may not find that you need these features in the course of your testing, as they go beyond simple UI automation. But whatever the case, it's important to know what you can do with Appium.
 
 The first set of features has to do with managing files. What kind of files exactly? Here I'm talking about files that live on the device itself.
